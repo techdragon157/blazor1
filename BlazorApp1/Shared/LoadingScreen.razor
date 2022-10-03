@@ -1,0 +1,30 @@
+﻿@if (IsLoaded)
+{
+    @ChildContent
+}
+else
+{
+    <div>
+        <div style="position:absolute; top:30vh; width:100%; text-align:center">
+            <h1>Blazor1</h1>
+            <div style="display:flex; gap:10px; justify-content:center; align-items:center">
+                <div class="spinner-border" role="status"></div>
+                Initializing...
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    bool IsLoaded;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // TODO actual initialization job
+        await Task.Delay(4000); // delay to simulate initializing process
+        IsLoaded = true;
+    }
+}
